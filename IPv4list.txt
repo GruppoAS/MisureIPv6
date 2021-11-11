@@ -1,0 +1,144 @@
+// Lista degli indirizzi proposti dai docenti
+//
+// ITALIA: 11 indirizzi
+
+// Cineca, consorzio per servizi web NIUR, Bologna
+www.glb.cineca.it,130.186.28.141
+
+www.assisiproloco.it,31.11.33.166
+
+www.valleditria.it,89.40.175.190
+
+www.produttorivinimanduria.it,185.36.74.55
+
+www.costadeifiori.it,185.21.117.35
+
+// Università di Pisa, Pisa 
+wwwnew2.unipi.it,131.114.21.42
+
+// Consorzio Nazionale Interuniversitario Telecomunicazioni, Parma
+web8.cnit.it,217.9.64.17
+
+// Università di Lecce
+www.unile.it,193.204.68.200
+
+//Provincia autonoma di Bolzano
+www.provincia.bz.it,62.101.0.185
+
+//Provincia Sassari
+www.provincia.sassari.it,151.11.50.191
+
+//Biblioteca regionale di Palermo
+www.bibliotecaregionalepalermo.it,88.33.205.19
+
+
+// Europa: 9 indirizzi
+
+// Lodz, Poland
+mariacki.com,195.162.24.96
+
+// KTH, Stoccolma
+www.kth.se,130.237.28.40
+
+// Nokia, London
+nokia.com,162.13.40.196
+
+// DomainFactory, Cologne, Germany
+www.hausderwirtschaft.de,134.119.245.6
+
+//Technische Universitat Muenchen
+tum.de,129.187.255.151
+
+//Universita' statale di Mosca
+msu.ru,178.154.215.92
+
+//Museo Louvre
+www.louvre.fr,89.185.38.196
+
+//Universita' di Valencia
+www.uv.es,147.156.200.249
+
+//Universita' Atene
+uoa.gr,195.134.71.229
+
+
+
+
+// Nord America, Costa Est: 3 indirizzi
+
+// Computer Science Columbia University, New York
+webcluster.cs.columbia.edu,128.59.11.206
+
+// Anexio Corporation, North Carolina 
+anexio.com,69.10.48.106
+
+// CenturyLink, Tampa
+www.airboatusa.com,66.77.206.79
+
+
+// Nord America, Costa Ovest: 3 indirizzi 
+
+// Isomedia, Seattle
+www.isomedia.com,207.115.64.56
+
+// Switch, Las Vegas
+www.switch.com,216.115.77.36
+
+// Unified Layer, Provo, Utah
+www.downtowncasper.com,162.241.252.194
+
+
+// Sud America : 4 indirizzi
+
+// Prefeitura da Cidade do Rio de Janeiro
+rio.rj.gov.br,187.111.98.123
+
+// universidad central del Ecuador
+www.uce.edu.ec,200.12.169.30
+
+// NSS, Buenos Aires, Argentina
+www.uthgracap.com.ar,201.216.200.117
+
+// ANT, Montevideo
+www.carlossicco.com.uy,179.27.153.55
+
+
+// Far East (Cina esclusa): 5 indirizzi
+
+// Toshiba Corporation, Giappone
+toshiba.co.jp,106.186.93.49
+
+// Sakura Internet, Osaka
+www.hvf.jp,59.106.165.210
+
+// WALLE, Hanoi
+ctnhp.com.vn,103.101.163.94
+
+// University of Christchurch, South Island, NZ
+www.canterbury.ac.nz,132.181.106.9
+
+// Young Australia Mines, Sydney, NSW, AU
+yamines.com.au,122.201.88.33
+
+
+// Cina: 3 indirizzi
+
+// China Unicom, Shanghai
+www.snhm.org.cn,210.22.96.81
+
+// Chinanet, Chengdu
+www.scmuseum.cn,118.122.91.2
+
+// Beihang Unviersity, Pechino
+proxy.buaa.edu.cn,106.39.41.46
+
+// Africa: 3 indirizzi
+
+// Algerie Telecom, Batna, Algeria
+algerietelecom.dz,197.112.0.130
+
+// University of Lagos, Nigeria
+unilag.edu.ng,196.45.48.45
+
+// Telecom Malagasy, Antananarivo, Madagascar
+www.ore.mg,41.188.7.72

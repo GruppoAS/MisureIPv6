@@ -1,0 +1,5 @@
+www.coca-colaitalia.it,2600:9000:2134:fc00:4:a235:dd40:93a1
+
+www.facebook.com,2a03:2880:f108:83:face:b00c:0:25de
+
+www.aidangallery.ru,2a00:f940:2:2:1:4:0:112

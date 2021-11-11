@@ -1,0 +1,107 @@
+
+Pinging 2a03:2880:f108:83:face:b00c:0:25de with 64 bytes of data:
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=5ms 
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=3ms 
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=3ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=3ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=3ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Reply from 2a03:2880:f108:83:face:b00c:0:25de: time=4ms 
+Request timed out.
+Request timed out.
+
+Ping statistics for 2a03:2880:f108:83:face:b00c:0:25de:
+    Packets: Sent = 100, Received = 45, Lost = 55 (55% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 3ms, Maximum = 5ms, Average = 3ms

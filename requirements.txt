@@ -1,0 +1,7 @@
+numpy
+matplotlib
+seaborn
+pandas
+pandas_schema
+pycountry_convert
+progressbar2
