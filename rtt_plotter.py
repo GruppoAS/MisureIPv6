@@ -61,29 +61,67 @@ parser.add_argument("-f", "--finput", dest="finput", required=True,
 
 
 def validate(df):
-    schema = Schema([
-        Column('name', [MatchesPatternValidation('^[a-zA-Z]{1,20}$')]),
-        Column('surname', [MatchesPatternValidation('^[a-zA-Z]{1,20}$')]),
-        Column('cap', [MatchesPatternValidation('^[0-9]{5}$')]),
-        Column('operator', [MatchesPatternValidation('^\w{1,25}$')]),
-        Column('poa', [InListValidation(
-            ["HOME", "MOBILE", "UNIBS", "OTHER"])]),
-        Column('accessTech', [InListValidation([
-            "FTTC", "FTTH", "ADSL", "FWA", "3G", "4G", "5G"])]),
-        Column('localTech', [InListValidation([
-            "WIFI", "ETHERNET", "HOTSPOT", "TETHERING"])]),
-        Column('country', [MatchesPatternValidation('^[A-Z]{2}$')]),
-        Column('datetime', [DateFormatValidation('%Y-%m-%d %H:%M:%S')]),
-        Column('IP', [MatchesPatternValidation(
+
+    # Controlliamo la versione del primo IP
+    # (ci aspettiamo che l'utente abbia tutti i file di log di ping con una stessa versione di IP)
+    primoIP = df.IP[0]
+    
+    if "." in primoIP:
+        ip_version = 4
+    else:
+        ip_version = 6
+
+    if ip_version == 4:
+        schema = Schema([
+            Column('name', [MatchesPatternValidation('^[a-zA-Z]{1,20}$')]),
+            Column('surname', [MatchesPatternValidation('^[a-zA-Z]{1,20}$')]),
+            Column('cap', [MatchesPatternValidation('^[0-9]{5}$')]),
+            Column('operator', [MatchesPatternValidation('^\w{1,25}$')]),
+            Column('poa', [InListValidation(
+                ["HOME", "MOBILE", "UNIBS", "OTHER"])]),
+            Column('accessTech', [InListValidation([
+                "FTTC", "FTTH", "ADSL", "FWA", "3G", "4G", "5G"])]),
+            Column('localTech', [InListValidation([
+                "WIFI", "ETHERNET", "HOTSPOT", "TETHERING"])]),
+            Column('country', [MatchesPatternValidation('^[A-Z]{2}$')]),
+            Column('datetime', [DateFormatValidation('%Y-%m-%d %H:%M:%S')]),
+            Column('IP', [MatchesPatternValidation(
             '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')]),
-        Column('minRTT', [InRangeValidation(1.0, 2000.0)], allow_empty=True),
-        Column('avgRTT', [InRangeValidation(1.0, 2000.0)], allow_empty=True),
-        Column('maxRTT', [InRangeValidation(1.0, 3000.0)], allow_empty=True),
-        Column('mdevRTT', [InRangeValidation(0, 400)], allow_empty=True),
-        Column('TX', [InRangeValidation(50, 1000)]),
-        Column('RX', [InRangeValidation(0, 1000)]),
-        Column('lost', [InRangeValidation(0.0, 100.000000001)])
-    ])
+            Column('minRTT', [InRangeValidation(1.0, 2000.0)], allow_empty=True),
+            Column('avgRTT', [InRangeValidation(1.0, 2000.0)], allow_empty=True),
+            Column('maxRTT', [InRangeValidation(1.0, 3000.0)], allow_empty=True),
+            Column('mdevRTT', [InRangeValidation(0, 400)], allow_empty=True),
+            Column('TX', [InRangeValidation(50, 1000)]),
+            Column('RX', [InRangeValidation(0, 1000)]),
+            Column('lost', [InRangeValidation(0.0, 100.000000001)])
+        ])
+
+    elif ip_version == 6:
+        schema = Schema([
+            Column('name', [MatchesPatternValidation('^[a-zA-Z]{1,20}$')]),
+            Column('surname', [MatchesPatternValidation('^[a-zA-Z]{1,20}$')]),
+            Column('cap', [MatchesPatternValidation('^[0-9]{5}$')]),
+            Column('operator', [MatchesPatternValidation('^\w{1,25}$')]),
+            Column('poa', [InListValidation(
+                ["HOME", "MOBILE", "UNIBS", "OTHER"])]),
+            Column('accessTech', [InListValidation([
+                "FTTC", "FTTH", "ADSL", "FWA", "3G", "4G", "5G"])]),
+            Column('localTech', [InListValidation([
+                "WIFI", "ETHERNET", "HOTSPOT", "TETHERING"])]),
+            Column('country', [MatchesPatternValidation('^[A-Z]{2}$')]),
+            Column('datetime', [DateFormatValidation('%Y-%m-%d %H:%M:%S')]),
+            
+            Column('IP', [MatchesPatternValidation(
+                '([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])')]),
+            Column('minRTT', [InRangeValidation(1.0, 2000.0)], allow_empty=True),
+            Column('avgRTT', [InRangeValidation(1.0, 2000.0)], allow_empty=True),
+            Column('maxRTT', [InRangeValidation(1.0, 3000.0)], allow_empty=True),
+            Column('mdevRTT', [InRangeValidation(0, 400)], allow_empty=True),
+            Column('TX', [InRangeValidation(50, 1000)]),
+            Column('RX', [InRangeValidation(0, 1000)]),
+            Column('lost', [InRangeValidation(0.0, 100.000000001)])
+        ])
+
     errors = schema.validate(df)
 
     for error in errors:

@@ -68,7 +68,7 @@ if __name__ == "__main__":
         config = setup_configuration(args.configfile)
 
         # FASE 2: scelta versione IP
-        ip_version = 6 if input("Vuoi utilizzare IPv4? Y/n ").lower() == "n" else 4
+        ip_version = 6 if input("\n\nVuoi utilizzare IPv4? [Y/n] ").lower() == "n" else 4
 
         # FASE 3: esecuzione esperimenti
         if ip_version == 4:     
