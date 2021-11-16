@@ -1,6 +1,6 @@
 from util.commons import *
 from util.configureExperiment import setup_configuration
-from util.exprunner import validate_ip_list, add_ipv6_list, run_ping_measurments
+from util.exprunner import validate_ip_list, run_ping_measurments
 from util.postprocess import process_logs
 from argparse import ArgumentParser
 
@@ -41,13 +41,11 @@ def check_OS():
 
 
 def check_requirements():
-    global iplistfile4
-    iplistfile4 = 'IPv4list.txt'
-    global iplistfile6
-    iplistfile6 = 'IPv6list.txt'
+    global iplistfile
+    iplistfile = 'IPlist.txt'
 
     # verifica che IPlist.csv esiste nella working directory
-    if not (os.path.isfile(iplistfile4) or os.path.isfile(iplistfile6)):
+    if not (os.path.isfile(iplistfile)):
         print("""The folder where you run this script must contain the file IPlist.txt,
               which is the file that lists all the IP addresses or QDNs to be pinged.
               Your working directory is: {}
@@ -62,30 +60,32 @@ if __name__ == "__main__":
     # FASE 0: controllo requisiti e customizzazione OS-dependent
     check_OS()
     if not only_postprocess:
-        check_requirements() # Aggiunta controllo per file di IPv6
+        check_requirements()
 
         # FASE 1: configurazione esperimento (con o senza configuration file)
         config = setup_configuration(args.configfile)
 
-        # FASE 2: scelta versione IP
-        ip_version = 6 if input("\n\nVuoi utilizzare IPv4? [Y/n] ").lower() == "n" else 4
-
-        # FASE 3: esecuzione esperimenti
-        if ip_version == 4:     
-            ping_list = validate_ip_list(iplistfile4, ip_version)
-        else:
-            ping_list = validate_ip_list(iplistfile6, ip_version)
+        # FASE 2: esecuzione esperimenti
+        ping_list_v4, ping_list_v6 = validate_ip_list(iplistfile)
 
         howmany = args.numping
         numcores = args.numcores
-        outdir = run_ping_measurments(ping_list, howmany, config, OS, numcores, ip_version)
+        
+        """
+        sistemare correttezza ipv6 (breakpoint)
+        sistemare file rtt_plotter
+        """
+
+        outdir = run_ping_measurments(ping_list_v4, howmany, config, OS, numcores, ip_version=4)
+        outdir = run_ping_measurments(ping_list_v6, howmany, config, OS, numcores, ip_version=6)
 
         print("-"*60)
 
-    # FASE 4: elaborazione risultati
+
+    # FASE 3: elaborazione risultati
     if only_postprocess:
         if not os.path.isdir(args.postprocess):
             print("Log folder {} cannot be found ".format(args.postprocess))
             exit()
     logfolder = args.postprocess if only_postprocess else outdir
-    errors = process_logs(logfolder, OS, ip_version)
+    errors = process_logs(logfolder, OS)

@@ -32,7 +32,7 @@ def build_stats(rttStats, packetsStats):
     return rttDict, packetsDict
 
 
-def parse_log(file, OS, ip_version):
+def parse_log(file, OS):
 
     rttStats, packetsStats = None, None
     # reading the whole log as a single filestring
@@ -40,9 +40,8 @@ def parse_log(file, OS, ip_version):
     filestring = f.read()
     f.close()
     # First of all, get the IP address
-    if ip_version == 4:
-        match = re.search(IPv4regex, filestring)
-    elif ip_version == 6:
+    match = re.search(IPv4regex, filestring)
+    if not match:
         match = re.search(IPv6regex, filestring)
     if not match:
         raise Exception(
@@ -212,7 +211,7 @@ def print_mistakes(found_mistakes):
             print("* {}\n  {}".format(e[0], e[1]))
 
 
-def process_logs(folder, OS, ip_version):
+def process_logs(folder, OS):
     compile_regex_logs(OS)
 
     # Retrieving log files
@@ -255,7 +254,7 @@ def process_logs(folder, OS, ip_version):
         # print(logname)
         print(logname.ljust(90, ' '), end='\r')
         try:
-            rttDict, packetsDict, IPaddress = parse_log(log, OS, ip_version)
+            rttDict, packetsDict, IPaddress = parse_log(log, OS)
             #print("{}\n{}".format(rttDict, packetsDict), end='\r')
         except Exception as e:
             print("ERROR: -> {}".format(logname).ljust(90, ' '))

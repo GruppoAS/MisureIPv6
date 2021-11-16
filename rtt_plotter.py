@@ -62,6 +62,8 @@ parser.add_argument("-f", "--finput", dest="finput", required=True,
 
 def validate(df):
 
+    """ DA SISTEMARE """
+
     # Controlliamo la versione del primo IP
     # (ci aspettiamo che l'utente abbia tutti i file di log di ping con una stessa versione di IP)
     primoIP = df.IP[0]

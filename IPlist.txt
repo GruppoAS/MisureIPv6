@@ -1,0 +1,33 @@
+//link dove trovare altri IPv6: https://trends.builtwith.com/websitelist/IPv6
+
+// massimo 15 indirizzi, visto che si fanno 3 richieste ad ip-api per volta (massimo 46 )
+
+tline.babytree.com,60.205.255.187,2408:4000:300::ee
+
+ccc.de,195.54.164.39,2001:67c:20a0:2:0:164:0:39
+
+heise.de,193.99.144.80,2a02:2e0:3fe:1001:302::
+
+filezilla-project.org,49.12.121.47,2a01:4f8:242:52d0::2
+
+static.criteo.net,178.250.2.130,2a02:2638:1::3
+
+videolan.org,213.36.253.2,2a01:e0d:1:3:58bf:fa02:c0de:5
+
+aqdawf.ccm.net,178.250.0.157,2a02:2638::1c
+
+horoscopes.rambler.ru,81.19.82.97,2a02:6b0::82:97
+
+timeweb.ru,185.114.246.105,2a03:6f00:1:2::5c35:7471
+
+kinopoisk.ivi.ru,178.154.131.216,2a02:6b8:20::215
+
+www.aidangallery.ru,31.31.198.241,2a00:f940:2:2:1:4:0:112
+
+opmo.mosreg.ru,89.108.84.47,2a01:4f8:201:914f::2
+
+ubuntu.com,185.125.190.21,2001:67c:1360:8001::2b
+
+gtmetrix.com,204.187.14.69,2607:fcc0:6::2
+
+//ITALIA, CANADA, RUSSIA, FRANCIA, GERMANIA, UK
