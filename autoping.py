@@ -70,14 +70,9 @@ if __name__ == "__main__":
 
         howmany = args.numping
         numcores = args.numcores
-        
-        """
-        serve fare controlli più volte?!? piuttosto controlla che IPv4 e IPv6 sono vicini?
-        sistemare file rtt_plotter: separare outdir_v4 e outdir_v6? poi dividi in cartelle plot_v4 e plot_v6
-        """
 
-        outdir = run_ping_measurments(ping_list_v4, howmany, config, OS, numcores, ip_version=4)
-        outdir = run_ping_measurments(ping_list_v6, howmany, config, OS, numcores, ip_version=6)
+        outdir_v4 = run_ping_measurments(ping_list_v4, howmany, config, OS, numcores, ip_version=4)
+        outdir_v6 = run_ping_measurments(ping_list_v6, howmany, config, OS, numcores, ip_version=6)
 
         print("-"*60)
 
@@ -87,5 +82,13 @@ if __name__ == "__main__":
         if not os.path.isdir(args.postprocess):
             print("Log folder {} cannot be found ".format(args.postprocess))
             exit()
-    logfolder = args.postprocess if only_postprocess else outdir
-    errors = process_logs(logfolder, OS)
+        logfolder = args.postprocess
+        ip_version = 4 if "v4" in logfolder else 6
+        errors = process_logs(logfolder, OS, ip_version)
+        exit()
+    
+    logfolder_v4 = outdir_v4
+    errors_v4 = process_logs(logfolder_v4, OS, ip_version=4)
+
+    logfolder_v6 = outdir_v6
+    errors_v6 = process_logs(logfolder_v6, OS, ip_version=6)

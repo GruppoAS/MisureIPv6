@@ -1,0 +1,107 @@
+
+Pinging 2a02:2350:5:108:80e6:bc6f:e84c:3c2c with 64 bytes of data:
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=42ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=40ms 
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+Reply from 2a02:2350:5:108:80e6:bc6f:e84c:3c2c: time=41ms 
+Request timed out.
+
+Ping statistics for 2a02:2350:5:108:80e6:bc6f:e84c:3c2c:
+    Packets: Sent = 100, Received = 49, Lost = 51 (51% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 40ms, Maximum = 42ms, Average = 40ms

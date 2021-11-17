@@ -1,0 +1,107 @@
+
+Pinging 2a02:2350:5:107:8043:eb97:6035:dd54 with 64 bytes of data:
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=39ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=42ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=40ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=39ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Request timed out.
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=37ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+Reply from 2a02:2350:5:107:8043:eb97:6035:dd54: time=38ms 
+
+Ping statistics for 2a02:2350:5:107:8043:eb97:6035:dd54:
+    Packets: Sent = 100, Received = 57, Lost = 43 (43% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 37ms, Maximum = 42ms, Average = 37ms

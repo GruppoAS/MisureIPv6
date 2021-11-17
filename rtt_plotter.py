@@ -18,14 +18,16 @@ import code  # code.interact(local=dict(globals(), **locals()))
 
 def main():
     args = parser.parse_args()
-    finput = args.finput
+    finput_v4 = args.finput_v4
+    finput_v6 = args.finput_v6
 
-    if not os.path.exists(finput):
-        print("{} does not exists".format(finput), file=sys.stderr)
+    #IPv4
+    if not os.path.exists(finput_v4):
+        print("{} does not exists".format(finput_v4), file=sys.stderr)
         exit()
 
     print("Loading and Validating data...")
-    data = load_data(finput)
+    data = load_data(finput_v4)
 
     print("\nData Loading Completed!")
     print(data)
@@ -33,21 +35,47 @@ def main():
     '''
     BUILD OUTPUT FOLDERS
     '''
-    out_folders = ['plot', 'plot/RTT', 'plot/SD', 'plot/LOSSES']
+    out_folders = ['plot_v4', 'plot_v4/RTT', 'plot_v4/SD', 'plot_v4/LOSSES']
     for folder in out_folders:
         if not os.path.exists(folder):
             os.makedirs(folder)
 
     # Plot something nice :)
     print("\nNow plotting...")
-    plotting(data)
+    plotting(data, out_folders[0])
+
+    print("\n\n\n\n\n")
+
+    #IPv6
+    if not os.path.exists(finput_v6):
+        print("{} does not exists".format(finput_v6), file=sys.stderr)
+        exit()
+
+    print("Loading and Validating data...")
+    data = load_data(finput_v6)
+
+    print("\nData Loading Completed!")
+    print(data)
+
+    '''
+    BUILD OUTPUT FOLDERS
+    '''
+    out_folders = ['plot_v6', 'plot_v6/RTT', 'plot_v6/SD', 'plot_v6/LOSSES']
+    for folder in out_folders:
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+
+    # Plot something nice :)
+    print("\nNow plotting...")
+    plotting(data, out_folders[0])
 
 
 usage = """The user MUST use the -f (or --finput) option to let this script find a file or a folder with results
             to process and plot
 
-        -h (or --help)               show this help message and exit
-        -f (or --finput) REQUIRED    A path to a result (csv) file or to a folder that contains
+        -h (or --help)                   show this help message and exit
+        -fv4 (or --finputv4) REQUIRED    A path to a IPv4 result (csv) file or to a folder that contains
+        -fv6 (or --finputv6) REQUIRED    A path to a IPv6 result (csv) file or to a folder that contains
         more of such csv files
     \n"""
 examplescript = "Try with this:\npython3 rtt_plotter.py -f ./"
@@ -56,22 +84,13 @@ desc = """This is a script to post-process rtt measurements, analyse and plot th
     University of Brescia, AA 2020/21."""
 
 parser = ArgumentParser(description=desc, usage=usage+examplescript)
-parser.add_argument("-f", "--finput", dest="finput", required=True,
+parser.add_argument("-fv4", "--finputv4", dest="finput_v4", required=True,
+                    action="store")
+parser.add_argument("-fv6", "--finputv6", dest="finput_v6", required=True,
                     action="store")
 
 
-def validate(df):
-
-    """ DA SISTEMARE """
-
-    # Controlliamo la versione del primo IP
-    # (ci aspettiamo che l'utente abbia tutti i file di log di ping con una stessa versione di IP)
-    primoIP = df.IP[0]
-    
-    if "." in primoIP:
-        ip_version = 4
-    else:
-        ip_version = 6
+def validate(df, ip_version):
 
     if ip_version == 4:
         schema = Schema([
@@ -88,7 +107,7 @@ def validate(df):
             Column('country', [MatchesPatternValidation('^[A-Z]{2}$')]),
             Column('datetime', [DateFormatValidation('%Y-%m-%d %H:%M:%S')]),
             Column('IP', [MatchesPatternValidation(
-            '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')]),
+                '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+')]),
             Column('minRTT', [InRangeValidation(1.0, 2000.0)], allow_empty=True),
             Column('avgRTT', [InRangeValidation(1.0, 2000.0)], allow_empty=True),
             Column('maxRTT', [InRangeValidation(1.0, 3000.0)], allow_empty=True),
@@ -112,9 +131,8 @@ def validate(df):
                 "WIFI", "ETHERNET", "HOTSPOT", "TETHERING"])]),
             Column('country', [MatchesPatternValidation('^[A-Z]{2}$')]),
             Column('datetime', [DateFormatValidation('%Y-%m-%d %H:%M:%S')]),
-            
             Column('IP', [MatchesPatternValidation(
-                '([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])')]),
+                '(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])$|^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*')]),
             Column('minRTT', [InRangeValidation(1.0, 2000.0)], allow_empty=True),
             Column('avgRTT', [InRangeValidation(1.0, 2000.0)], allow_empty=True),
             Column('maxRTT', [InRangeValidation(1.0, 3000.0)], allow_empty=True),
@@ -149,7 +167,7 @@ def load_data(finput):
     if os.path.isfile(finput):
         df = pd.read_csv(finput, header=0)
     elif os.path.isdir(finput):
-        csvfiles = glob(finput+os.sep+'results_*_*.csv')
+        csvfiles = glob(finput+os.sep+'results_*_*_v*.csv')
         dataframes = []
         for file in csvfiles:
             df = pd.read_csv(file, header=0)
@@ -158,7 +176,9 @@ def load_data(finput):
         aggregate_num_records = sum([len(df) for df in dataframes])
         assert aggregate_num_records == len(df)
 
-    valid = validate(df)
+    ip_version = 4 if "v4" in finput else 6
+
+    valid = validate(df, ip_version)
     # add continent and world-category columns after validation
     valid['continent'] = valid.apply(
         lambda row: pc.country_alpha2_to_continent_code(row['country']), axis=1)
@@ -167,7 +187,7 @@ def load_data(finput):
     return valid
 
 
-def plot_histograms(df):
+def plot_histograms(df, plot_folder):
     print("HIST RTT...")
     data = df.avgRTT
     bin_widths = [5, 10, 20]
@@ -190,7 +210,7 @@ def plot_histograms(df):
         plt.minorticks_on()
         plt.tight_layout()
         plt.subplots_adjust(left=0.1, right=0.95, top=0.9, bottom=0.13)
-        plt.savefig('plot/RTT/hist_meanRTT_bw={}.pdf'.format(bw), format='pdf')
+        plt.savefig(plot_folder+'/RTT/hist_meanRTT_bw={}.pdf'.format(bw), format='pdf')
         plt.clf()
 
     '''
@@ -217,7 +237,7 @@ def plot_histograms(df):
         # plt.minorticks_on()
         plt.tight_layout()
         plt.subplots_adjust(left=0.1, right=0.95, top=0.9, bottom=0.13)
-        plt.savefig('plot/SD/hist_sdRTT_bw={}.pdf'.format(bw), format='pdf')
+        plt.savefig(plot_folder+'/SD/hist_sdRTT_bw={}.pdf'.format(bw), format='pdf')
         plt.clf()
 
     '''
@@ -244,7 +264,7 @@ def plot_histograms(df):
         plt.tight_layout()
         plt.subplots_adjust(left=0.1, right=0.97, top=0.9, bottom=0.12)
         plt.savefig(
-            'plot/LOSSES/histLOG_losses_bw={}.pdf'.format(bw), format='pdf')
+            plot_folder+'/LOSSES/histLOG_losses_bw={}.pdf'.format(bw), format='pdf')
         plt.clf()'''
 
     bin_widths = [1, 2, 3, 5]
@@ -265,11 +285,11 @@ def plot_histograms(df):
         plt.tight_layout()
         plt.subplots_adjust(left=0.1, right=0.97, top=0.9, bottom=0.12)
         plt.savefig(
-            'plot/LOSSES/hist_losses_bw={}.pdf'.format(bw), format='pdf')
+            plot_folder+'/LOSSES/hist_losses_bw={}.pdf'.format(bw), format='pdf')
         plt.clf()
 
 
-def poa_comparison(df):
+def poa_comparison(df, plot_folder):
     print("Comparison plots for Point-Of-Access...")
 
     # 1) BarChart meanRTT 4 poa
@@ -293,8 +313,15 @@ def poa_comparison(df):
     plt.xlabel("Point of Access")
     plt.xticks(x, ['HOME', 'MOBILE', 'UNIBS', 'OTHER'])
     plt.subplots_adjust(left=0.1, right=0.95, top=0.97, bottom=0.1)
-    plt.savefig("plot/meanRTTmeanCOMPARISON.pdf", format='pdf')
+    plt.savefig(plot_folder+"/meanRTTmeanCOMPARISON.pdf", format='pdf')
     plt.clf()
+
+    """
+    possibile soluzione (non elegante):
+
+    import warnings
+    warnings.filterwarnings("ignore", 'This pattern has match groups')
+    """
 
     # 2) Boxplot of meanRTT 4 poa
     meanpointprops = dict(marker='_', markeredgecolor='black',
@@ -311,7 +338,7 @@ def poa_comparison(df):
     plt.grid()
     ax.set_axisbelow(True)
     # plt.subplots_adjust(left=0.13, right=0.95, top=0.95, bottom=0.23)
-    plt.savefig("plot/meanRTT-distribCOMPARISON.pdf", format='pdf')
+    plt.savefig(plot_folder+"/meanRTT-distribCOMPARISON.pdf", format='pdf')
     plt.clf()
 
     # 3) Boxplot 4 poa X [ITA, EU, rest of the world]
@@ -323,7 +350,7 @@ def poa_comparison(df):
     ax.set_axisbelow(True)
     # plt.subplots_adjust(left=0.13, right=0.95, top=0.95, bottom=0.23)
     plt.savefig(
-        "plot/meanRTT-distribCOMPARISON-by-WORLDCATEGORIES.pdf", format='pdf')
+        plot_folder+"/meanRTT-distribCOMPARISON-by-WORLDCATEGORIES.pdf", format='pdf')
     plt.clf()
 
     # 3) Boxplot 4 poa X CONTINENT
@@ -334,10 +361,10 @@ def poa_comparison(df):
     plt.grid()
     ax.set_axisbelow(True)
     # plt.subplots_adjust(left=0.13, right=0.95, top=0.95, bottom=0.23)
-    plt.savefig("plot/meanRTT-distribCOMPARISON-by-CONTINENT.pdf", format='pdf')
+    plt.savefig(plot_folder+"/meanRTT-distribCOMPARISON-by-CONTINENT.pdf", format='pdf')
     plt.clf()
 
-def violin_plot_poa(df):
+def violin_plot_poa(df, plot_folder):
     print("Violin plots for Point-Of-Access...")
     #code.interact(local=dict(globals(), **locals()))
 
@@ -347,7 +374,7 @@ def violin_plot_poa(df):
     plt.ylabel('RTT distribution [ms]')
     plt.grid()
     ax.set_axisbelow(True)
-    plt.savefig("plot/POA-violin-box.pdf", format='pdf')
+    plt.savefig(plot_folder+"/POA-violin-box.pdf", format='pdf')
     plt.clf()
 
     # solo con 1o 2o e 3o quartile segnati
@@ -356,7 +383,7 @@ def violin_plot_poa(df):
     plt.ylabel('RTT distribution [ms]')
     plt.grid()
     ax.set_axisbelow(True)
-    plt.savefig("plot/POA-violin-quartili.pdf", format='pdf')
+    plt.savefig(plot_folder+"/POA-violin-quartili.pdf", format='pdf')
     plt.clf()
     
     # con osservazioni scatter allineate
@@ -365,7 +392,7 @@ def violin_plot_poa(df):
     plt.ylabel('RTT distribution [ms]')
     plt.grid()
     ax.set_axisbelow(True)
-    plt.savefig("plot/POA-violin-scatter.pdf", format='pdf')
+    plt.savefig(plot_folder+"/POA-violin-scatter.pdf", format='pdf')
     plt.clf()
 
     # strano simpatico stile "boxen"
@@ -374,7 +401,7 @@ def violin_plot_poa(df):
     plt.ylabel('RTT distribution [ms]')
     plt.grid()
     ax.set_axisbelow(True)
-    plt.savefig("plot/POA-violin-boxen.pdf", format='pdf')
+    plt.savefig(plot_folder+"/POA-violin-boxen.pdf", format='pdf')
     plt.clf()
 
     #ax = sns.violinplot(x=df['poa'], y=df['avgRTT'], inner=None)
@@ -392,7 +419,7 @@ def violin_plot_poa(df):
     plt.grid()
     plt.legend(title = 'Point of Access to Internet')
     ax.set_axisbelow(True)
-    plt.savefig("plot/POA-violin-HOMEvsMOBILE-byWORLDCAT.pdf", format='pdf')
+    plt.savefig(plot_folder+"/POA-violin-HOMEvsMOBILE-byWORLDCAT.pdf", format='pdf')
     plt.clf()
 
     ax = sns.violinplot(x=dfCasaOrMobile['continent'], y=dfCasaOrMobile['avgRTT'],
@@ -402,11 +429,11 @@ def violin_plot_poa(df):
     plt.grid()
     plt.legend(title = 'Point of Access to Internet')
     ax.set_axisbelow(True)
-    plt.savefig("plot/POA-violin-HOMEvsMOBILE-byContinent.pdf", format='pdf')
+    plt.savefig(plot_folder+"/POA-violin-HOMEvsMOBILE-byContinent.pdf", format='pdf')
     plt.clf()
 
 
-def violin_plot_operators(df):
+def violin_plot_operators(df, plot_folder):
     
     meanlineprops = dict(linestyle='--', linewidth=1.2, color='red')
     df['operator'] = df['operator'].str.upper()
@@ -450,7 +477,7 @@ def violin_plot_operators(df):
     ax.set_axisbelow(True)
     plt.setp(ax.get_xticklabels(), rotation=20, fontsize=8)
     plt.subplots_adjust(left=0.1, right=0.95, top=0.95, bottom=0.2)
-    plt.savefig("plot/OPERATOR-violin-HOMEvsMOBILE-byContinent.pdf", format='pdf')
+    plt.savefig(plot_folder+"/OPERATOR-violin-HOMEvsMOBILE-byContinent.pdf", format='pdf')
     plt.clf()
 
     #confronto operatori HOME
@@ -462,7 +489,7 @@ def violin_plot_operators(df):
     ax.set_axisbelow(True)
     plt.setp(ax.get_xticklabels(), rotation=20, fontsize=8)
     #plt.subplots_adjust(left=0.1, right=0.95, top=0.95, bottom=0.2)
-    plt.savefig("plot/OPERATORcomparisonHOME.pdf", format='pdf')
+    plt.savefig(plot_folder+"/OPERATORcomparisonHOME.pdf", format='pdf')
     plt.clf()
 
 
@@ -475,31 +502,31 @@ def violin_plot_operators(df):
     ax.set_axisbelow(True)
     plt.setp(ax.get_xticklabels(), rotation=20, fontsize=8)
     #plt.subplots_adjust(left=0.1, right=0.95, top=0.95, bottom=0.2)
-    plt.savefig("plot/OPERATORcomparisonMOBILE.pdf", format='pdf')
+    plt.savefig(plot_folder+"/OPERATORcomparisonMOBILE.pdf", format='pdf')
     plt.clf()
 
 
 
 
 
-def boxplot_accessTechs(df):
+def boxplot_accessTechs(df, plot_folder):
     pass
 
-def plotting(data):
+def plotting(data, plot_folder):
     plt.rc('axes', axisbelow=True)
     plt.figure(figsize=(9, 4.5))
 
     # histograms of all RTT stats
-    plot_histograms(data)
+    plot_histograms(data, plot_folder)
 
     # boxplot per punto-di-accesso e operator
-    poa_comparison(data)
+    poa_comparison(data, plot_folder)
 
-    boxplot_accessTechs(data)
+    boxplot_accessTechs(data, plot_folder)
 
-    #violin_plot_poa(data)
+    #violin_plot_poa(data, violin_plot_poa)
 
-    #violin_plot_operators(data)
+    #violin_plot_operators(data, violin_plot_poa)
 
 if __name__ == "__main__":
     main()

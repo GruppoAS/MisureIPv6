@@ -32,7 +32,7 @@ def build_stats(rttStats, packetsStats):
     return rttDict, packetsDict
 
 
-def parse_log(file, OS):
+def parse_log(file, OS, ip_version):
 
     rttStats, packetsStats = None, None
     # reading the whole log as a single filestring
@@ -40,9 +40,11 @@ def parse_log(file, OS):
     filestring = f.read()
     f.close()
     # First of all, get the IP address
-    match = re.search(IPv4regex, filestring)
-    if not match:
-        match = re.search(IPv6regex, filestring)
+    if ip_version == 4:
+        match = re.search(IPv4regex, filestring)
+    elif ip_version == 6:
+        ip_da_verificare = filestring[9:].split(' ')[0]
+        match = re.search(IPv6regex, ip_da_verificare)
     if not match:
         raise Exception(
             "Cannot find an IP address in this log")
@@ -211,7 +213,7 @@ def print_mistakes(found_mistakes):
             print("* {}\n  {}".format(e[0], e[1]))
 
 
-def process_logs(folder, OS):
+def process_logs(folder, OS, ip_version):
     compile_regex_logs(OS)
 
     # Retrieving log files
@@ -254,7 +256,7 @@ def process_logs(folder, OS):
         # print(logname)
         print(logname.ljust(90, ' '), end='\r')
         try:
-            rttDict, packetsDict, IPaddress = parse_log(log, OS)
+            rttDict, packetsDict, IPaddress = parse_log(log, OS, ip_version)
             #print("{}\n{}".format(rttDict, packetsDict), end='\r')
         except Exception as e:
             print("ERROR: -> {}".format(logname).ljust(90, ' '))
@@ -280,7 +282,7 @@ def process_logs(folder, OS):
     if results_matrix != []:
         # retrieving name and surname from last parsed log
         name, surname = params[0], params[1]
-        outputfile = "_".join(["results", name, surname])+'.csv'
+        outputfile = "_".join(["results", name, surname, "v"+str(ip_version)])+'.csv'
         df = pd.DataFrame(results_matrix, columns=columns)
         df.set_index(index)
         df.to_csv(outputfile, sep=',', encoding='utf-8',
