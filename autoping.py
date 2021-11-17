@@ -72,8 +72,8 @@ if __name__ == "__main__":
         numcores = args.numcores
         
         """
-        sistemare correttezza ipv6 (breakpoint)
-        sistemare file rtt_plotter
+        serve fare controlli più volte?!? piuttosto controlla che IPv4 e IPv6 sono vicini?
+        sistemare file rtt_plotter: separare outdir_v4 e outdir_v6? poi dividi in cartelle plot_v4 e plot_v6
         """
 
         outdir = run_ping_measurments(ping_list_v4, howmany, config, OS, numcores, ip_version=4)
