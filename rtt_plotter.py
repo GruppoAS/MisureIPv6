@@ -15,18 +15,26 @@ from pandas_schema import Column, Schema
 from pandas_schema.validation import DateFormatValidation, MatchesPatternValidation, InRangeValidation, InListValidation
 import code  # code.interact(local=dict(globals(), **locals()))
 
+import warnings
 
 def main():
+    warnings.filterwarnings("ignore", 'This pattern has match groups')
+
+    # Importante fornire come argomenti sia il file .csv dei risultati delle misure con IPv4
+    # che quello dei risultati delle misure con IPv6.
     args = parser.parse_args()
     finput_v4 = args.finput_v4
     finput_v6 = args.finput_v6
+
+    # Abbiamo deciso di differenziare le cartelle dei plot in base alla versione IP,
+    # in modo tale da separare i due risultati.
 
     #IPv4
     if not os.path.exists(finput_v4):
         print("{} does not exists".format(finput_v4), file=sys.stderr)
         exit()
 
-    print("Loading and Validating data...")
+    print("Loading and Validating data from IPv4 measurements...")
     data = load_data(finput_v4)
 
     print("\nData Loading Completed!")
@@ -44,14 +52,14 @@ def main():
     print("\nNow plotting...")
     plotting(data, out_folders[0])
 
-    print("\n\n\n\n\n")
+    print("\n\n\n")
 
     #IPv6
     if not os.path.exists(finput_v6):
         print("{} does not exists".format(finput_v6), file=sys.stderr)
         exit()
 
-    print("Loading and Validating data...")
+    print("Loading and Validating data from IPv6 measurements...")
     data = load_data(finput_v6)
 
     print("\nData Loading Completed!")
@@ -316,13 +324,6 @@ def poa_comparison(df, plot_folder):
     plt.savefig(plot_folder+"/meanRTTmeanCOMPARISON.pdf", format='pdf')
     plt.clf()
 
-    """
-    possibile soluzione (non elegante):
-
-    import warnings
-    warnings.filterwarnings("ignore", 'This pattern has match groups')
-    """
-
     # 2) Boxplot of meanRTT 4 poa
     meanpointprops = dict(marker='_', markeredgecolor='black',
                           markerfacecolor='firebrick')
@@ -513,6 +514,9 @@ def boxplot_accessTechs(df, plot_folder):
     pass
 
 def plotting(data, plot_folder):
+
+    # plot_folder specifica in quale cartella vanno salvati i plot, in base alla versione di IP.
+
     plt.rc('axes', axisbelow=True)
     plt.figure(figsize=(9, 4.5))
 

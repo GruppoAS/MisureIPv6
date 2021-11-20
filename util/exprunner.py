@@ -51,7 +51,8 @@ def validate_ip_list(iplistfile):
     print('\n# BUILDING LIST OF PING COMMANDS TO BE EXECUTED'.ljust(60, '-'))
     print("Scanning IPlist.csv to validate IP addresses and QDNs...")
     
-    n_prove = 10
+    # Numero di volte in cui si verifica se IPv4 e IP di QDN coincidono (nel caso in cui una QDN sia associata a piu' IPv4)
+    n_prove = 5
 
     pingable_list_v4 = []
     pingable_list_v6 = []
@@ -85,24 +86,32 @@ def validate_ip_list(iplistfile):
                     break
 
                 check_v4 = False
-                for i in range(0, n_prove):
-                    data_v4 = ipapi_query(elems[1], slowFlag)
+                data_v4 = ipapi_query(elems[1], slowFlag)
+                if data_v4['status'] != 'success':
+                    print("ip-api.com has not been able to resolve this IPv4: {}".format(IPv4))
+                    break
+                for i in range(1, n_prove):
+                    data_QDN = ipapi_query(elems[0], slowFlag)
                     if IPv4 != data_QDN['query']:
                         continue
-                    check_v4 = True
-                    break
+                    else:
+                        check_v4 = True
+                        break
 
                 if not check_v4:
-                    print("Line {} of {}: IP address mismatches QDN".format(index, iplistfile))
+                    print("Line {} of {}: IPv4 address mismatches QDN".format(index, iplistfile))
                     print("Please, correct this line: {}".format(line))
                     print("NB: ip-api.com tells that {} --> {}".format(qdn, data_v4['query']))
                 else:
                     check_v6 = True
                     data_v6 = ipapi_query(elems[2], slowFlag)
-                    
-                    #Controlliamo che l'IPv4 e l'IPv6 considerati provengano per lo meno dalla stessa città
+                    if data_v6['status'] != 'success':
+                        print("ip-api.com has not been able to resolve this IPv6: {}".format(IPv6))
+                        break
+
+                    #Controlliamo che l'IPv4 e l'IPv6 considerati provengano per lo meno dalla stessa regione.
                     #Abbiamo deciso di affidarci a questo stratagemma per evitare errori dovuti alla molteplicità
-                    #di indirizzi IPv6 legati al medesimo sito.
+                    #di indirizzi IPv6 legati al medesimo sito locati in regioni differenti rispetto all'IPv4.
                     if data_v6['regionName'] != data_v4['regionName']:
                         check_v6 = False
                         print("IPv4 and IPv6 are not located in the same region.")
@@ -143,7 +152,9 @@ def build_out_dir(outfolder='out'):
 
 def build_ping_args(IPaddress, howmany, OS, ip_version):
     command = "ping"
+
     ip_version_option = "-4" if ip_version == 4 else "-6"
+
     if OS == "posix":
         countarg, bytesizearg, numbytes, intervalarg, definterval = "-c", "-s", "56", "-i", "1"
     elif OS == "nt":
@@ -176,6 +187,8 @@ def ping(args, logname, timeout):
     return "OK"
 
 def run_ping_measurments(ping_list, howmany, config, OS, num_cpu, ip_version):
+
+    # Creiamo due cartelle out, una per misurazioni con IPv4 ed una per misurazioni con IPv6
     outdir = build_out_dir(outfolder="out_v4") if ip_version == 4 else build_out_dir(outfolder="out_v6")
     
     # timeout 50% in piu' del numero di pacchetti inviati
