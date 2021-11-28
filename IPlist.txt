@@ -3,7 +3,7 @@
 // Belgio, Giappone, Sud Africa, Spagna, Corea del Sud, Australia, Albania, Austria, Grecia
 
 
-// Canada (2)
+// Canada (1)
 
 gtmetrix.com,204.187.14.69,2607:fcc0:6::2
 
@@ -54,4 +54,4 @@ timeweb.ru,185.114.246.105,2a03:6f00:1:2::5c35:7471
 www.aidangallery.ru,31.31.198.241,2a00:f940:2:2:1:4:0:112
 
 
-// IP totali: 16
+// IP totali: 15
