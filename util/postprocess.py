@@ -43,7 +43,7 @@ def parse_log(file, OS, ip_version):
     if ip_version == 4:
         match = re.search(IPv4regex, filestring)
     elif ip_version == 6:
-        ip_da_verificare = filestring[9:].split(' ')[0]
+        ip_da_verificare = filestring.split('g ')[1]
         match = re.search(IPv6regex, ip_da_verificare)
     if not match:
         raise Exception(
